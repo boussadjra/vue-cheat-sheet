@@ -1,0 +1,29 @@
+{
+    "name": "vue-cheat-sheet",
+    "version": "1.0.0",
+    "description": "It's a Vue stuff based on https://github.com/dekadentno/vue-cheat-sheet",
+    "main": "index.js",
+    "scripts": {
+        "docs:dev": "vuepress dev docs --host localhost",
+        "docs:build": "vuepress build docs",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "devDependencies": {
+        "vuepress": "^1.5.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/boussadjra/vue-cheat-sheet.git"
+    },
+    "keywords": [
+        "vue",
+        "docs",
+        "vue-cheat-sheet"
+    ],
+    "author": "BRAHIM BOUSSADJRA",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/boussadjra/vue-cheat-sheet/issues"
+    },
+    "homepage": "https://github.com/boussadjra/vue-cheat-sheet#readme"
+}
