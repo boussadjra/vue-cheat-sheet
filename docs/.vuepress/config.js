@@ -1,7 +1,7 @@
 module.exports = {
 	title: 'Vue cheat sheet',
     description: 'It\'s a Vue stuff based on this repository https://github.com/dekadentno/vue-cheat-sheet',
-    base:'/',
+    base:'/vue-cheat-sheet/',
     markdown: {
         config: md => {
           md.set({ breaks: true })
