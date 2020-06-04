@@ -2,7 +2,7 @@
 home: true
 actionText: TAKE A L👀K
 actionLink: /guide/
-footer: Vue cheat sheet Component - BOUSSADJRA BRAHIM
+footer: Vue cheat sheet 2020 - BOUSSADJRA BRAHIM
 ---
 
  > Thanks to [Matej](https://dekadentno.github.io/) 💪 for this [rich content](https://github.com/dekadentno/vue-cheat-sheet) 💡 that he provided to the community

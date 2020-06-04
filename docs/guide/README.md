@@ -20,69 +20,43 @@ Stuff that might get handy in almost every Vue.js project:
 
 ---
 ## Basic HTML and JS
-```html
-<html>
-	<head>
-		<meta charset="utf8">
-		<title>VueJS example</title>
-		<link href="style.css" rel="stylesheet" />
-		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	</head>
 
-	<body>
-		<div id="vue-app">
-			<p> {{ hello() }} </p>
-			<p> {{ name }} </p>
-			<p> {{ age + 1 }} </p>
-			<p> {{ age < 18 ? "Youngster" : "Adult"}} </p>
-		</div>
+<<< @/docs/.vuepress/components/BasicHTMLJS.vue
 
-		<script src="app.js"></script>
-	</body>
-</html>
-```
-```javascript
-new Vue({
-	el: '#vue-app', // contoled element
+<VOutput>
+<BasicHTMLJS />
+</VOutput>
 
-	data: {
-		name: "Matej",
-		age: 27,
-		sleepy: true
-	},
-
-	methods: {
-		hello: function () {
-			return "Hello";
-		},
-	computed:{}
-    }
-});
-```
+## Anatomy of Vue component
 ![](https://cdn-images-1.medium.com/max/2000/1*C4A0g1KYpa_olbSJcxAEBA.png)
 
 ## HTML directives  
 ##### Show / hide div
 ##### Hides the element (display none), doesn't delete it
-where _available_ is a boolean variable in the js 
+where _`available`_ is a boolean variable in the js script
 ```html
 <div v-show="available">Stuff</div>
 ```
-##### Toggle show / hide div
-where _available_ is a boolean variable in the js 
-```html
-<div v-show="available = !available">Stuff</div>
-```
+<<< @/docs/.vuepress/components/CondRenderShow.vue
 
-##### Render div
-##### Deletes the element, doesn't hide it
-where _available_ is a boolean variable in the js 
+<VOutput>
+<CondRenderShow />
+</VOutput>
+
+
+#### Conditional rendering
+ it deletes the element from the DOM tree
 ```html
 <div v-if="available">Stuff</div>
 <div v-else>Smth else</div>
 ```
+<<< @/docs/.vuepress/components/CondRenderIf.vue
 
-##### Looping
+<VOutput>
+<CondRenderIf />
+</VOutput>
+
+#### Looping
 ##### array of strings
 Remember to check if the element exists with v-if before looping over it
 ```html
@@ -90,10 +64,15 @@ Remember to check if the element exists with v-if before looping over it
     <li v-for="(element, index) in elements">{{index}} {{element}}</li>
 </ul>
 ```
-##### array of objects
+##### array of objects 
+
+::: warning
+Don't use `v-if` and `v-for` in the same element for more details check this [article](https://www.codechief.org/article/dont-use-v-if-with-v-for-elements)
+
+:::
 ```html
-<ul>
-    <li v-if="employee" v-for="employee in employees">{{employee.name}} - {{employee.age}}</li>
+<ul v-if="employee">
+    <li  v-for="employee in employees">{{employee.name}} - {{employee.age}}</li>
 </ul>
 ```
 
@@ -107,9 +86,9 @@ Remember to check if the element exists with v-if before looping over it
     </tr>
     <template v-for="u in users">
       <tr v-for="t in u.transfers">>
-	<td>{{ t.amount }}</td>
-	<td>{{ t.asset }}</td>
-	<td>{{ t.timestamp }}</td>>
+        	<td>{{ t.amount }}</td>
+	        <td>{{ t.asset }}</td>
+	        <td>{{ t.timestamp }}</td>>
       </tr>
     </template>
 </table>
@@ -124,27 +103,47 @@ Remember to check if the element exists with v-if before looping over it
 </li>
 ```
 
-##### Set text for element from a variable _name_
-```html
-<span v-text="name"></span>
-```
-##### Set html for element from a variable _name_
+<<< @/docs/.vuepress/components/ListRendering.vue
+
+<VOutput>
+<ListRendering />
+</VOutput>
+
+
+ Set html for element from a variable _name_
 ```html
 <span v-html="name"></span>
 ```
+The `v-html` directive outputs the real html rendered content not a plain text
+
+<<< @/docs/.vuepress/components/VHtml.vue
+
+<VOutput>
+<VHtml />
+</VOutput>
+
 
 ## Two way data binding
+
+`v-model` directive allows you to bind a data object property with a form input :
+
 ```html
 <input v-model="name" type="text" />
 <p>My name is: {{name}}</p>
 ```
 ```javascript
 ...
-data:{
-	name: ""
+data(){
+	return{
+    name: ""
+  }
 }
 ...
 ```
+
+<VOutput>
+<VModel />
+</VOutput>
 
 ## Computed properties
 > Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance’s scope (i.e. not reactive), the computed property will not be updated. In other words, imagine a computed property as a method (but it's not really a method) in the ```data()``` that always returns a value. That "method" will be called whenever a property (variable from ```data()```) used in that method is changed.
@@ -251,8 +250,14 @@ where _method_ is a custom method in the js
 ```
 _method_ is called when ALT+ENTER is pressed
 ```html
-<input ref="name" v-on:keyuop.alt.enter="method" type="text" />
+<input ref="name" v-on:keyup.alt.enter="method" type="text" />
 ```
+<<< @/docs/.vuepress/components/EventKeyModifier.vue
+
+<VOutput>
+<EventKeyModifier />
+</VOutput>
+
 ##### Conditional event binding (as of Vue 2.6)
 The method ```sendModey``` will be called only if the condition ``` amount > 0 ``` has been met.
 ```vue
@@ -518,7 +523,26 @@ this will make a dist folder with minified js
 $ npm run build
 ```
 
+## Vue CLI 3
+##### make new project
+```
+$ vue create my-project
+$ cd project-name
+```
+##### install dependencies and start local server
+```
+$ npm install
+$ npm run serve
+```
+##### build app for production
+this will make a dist folder with minified js
+```
+$ npm run build
+```
+
+
 ## Vue lifecycle
+
 * new Vue();
 * .beforeCreate();
 * .created();
@@ -567,18 +591,19 @@ data: function () {
 ```javascript
 data: function () {
 	town: "",
-        towns: ["Zagreb", "Osijek", "Varazdin", "Split", "Rijeka", "Dubrovnik"]
+        towns: ["Zagreb", "Algiers","Aflou","Aleppo","Osijek", "Varazdin", "Split", "Rijeka", "Dubrovnik",]
 }
 ```
-## POST requests with vue-resource
+## Vue resource
+### POST requests with vue-resource
 __Important: if sending nested objects, be sure to JSON.stringify first!__
-##### Register it in main.js
+#### Register it in main.js
 ```javascript
 import VueResource from 'vue-resource'
 
 Vue.use(VueResource);
 ```
-##### Usage in custom function 
+#### Usage in custom function 
 ```javascript
 post: function () {
 	this.$http.post("http://localhost:3000/users", {
@@ -594,7 +619,7 @@ post: function () {
 }
 ```
 
-## GET requests
+### GET requests
 ##### Usage in custom function
 ```javascript
 post: function () {
@@ -604,6 +629,40 @@ post: function () {
 	});
 }
 ```
+## Vue with axios
+
+### installation
+
+       npm install axios vue-axios --save 
+
+### Registration in `app.js` or `main.js`
+
+```js
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+Vue.use(VueAxios, axios);
+```
+
+then you could get access to `this.axios` in any child component :
+
+```js
+ this.axios.get(URL).then((result) => {
+     //handle the result in case if the request is successfully processed  
+ }).catch((err) => {
+   //handle the error 
+ });
+ ...
+
+  this.axios.post(URL,{
+    //request body
+  }).then((result) => {
+     //handle the result in case if the request is successfully processed  
+ }).catch((err) => {
+   //handle the error 
+ });
+
+```
+
 
 ## Routes with vue-router
 ```javascript

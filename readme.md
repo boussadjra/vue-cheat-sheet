@@ -1,6 +1,6 @@
 # [vue-cheat-sheet](https://boussadjra.github.io/vue-cheat-sheet/)
 
-It\'s a Vue stuff based on [this repository](https://github.com/dekadentno/vue-cheat-sheet') which tried to make it available as website with easy navigation and pretty style
+It\'s a Vue stuff based on [this repository](https://github.com/dekadentno/vue-cheat-sheet') which tried to make it available as website with easy navigation, some running code, updated content and pretty style
 
 > Thanks to [Matej](https://dekadentno.github.io/) 💪 for this [rich content](https://github.com/dekadentno/vue-cheat-sheet) 💡 that he provided to the community
 
